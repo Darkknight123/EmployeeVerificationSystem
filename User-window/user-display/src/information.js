@@ -1,10 +1,11 @@
 import React from 'react'
 
-
-export default function information() {
+function information() {
     return (
         <div>
             
         </div>
     )
 }
+
+export default information
