@@ -3,8 +3,9 @@ import display from './display'
 function App() {
 
   return (
-    <div className="App">
-      React-webcam
+    <div className="display">
+      <display/>
+
     </div>
   );
 }

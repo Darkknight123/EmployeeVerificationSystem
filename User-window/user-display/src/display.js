@@ -3,7 +3,7 @@
 
 export default function display() {
     return (
-        <div>
+        <div className="Webcam">
              <Webcam/>
         </div>
     )
