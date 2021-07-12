@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input,button{
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+.App{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color:white;
+}
+
+form{
+  display:block;
+  position: relative;
+
+
+}
+form:after{
+  content:'';
+  display:block;
+  position:absolute;
+  top:-3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  z-index: 1;
+  background-image: linear-gradient(to bottom right,#181a19,#34c3eb);
+}
+form .form-inner{
+  position: relative;
+  display: block;
+  background-color:whitesmoke ;
+  padding:10px;
+  z-index: 2;
+}
