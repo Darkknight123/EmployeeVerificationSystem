@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
 import LoginForm from './components/LoginForm'
+import Panel from './components/Admin-panel/Panel';
 
 function App() {
   const adminUser={
     email:"admin@admin.com",
-    password:"admin123"
+    password:"admin1234"
   }
   const [user,setUser]=useState({name:"",email:""});
   const [error,setError]=useState("");
@@ -25,17 +26,12 @@ function App() {
     }
   }
 
-  const Logout=()=>{
-    setUser({name:"",email:""})
-  }
-
+  
   return (
     <div className='App'>
      {(user.email !=="")?(
-     <div className="welcome">
-        <h2>Welcome, <span>{user.name}</span></h2>
-       <button onClick={Logout}>Logout</button>
-     </div>
+       <Panel/>
+     
       
      ):(
        <LoginForm Login={Login} error={error}/>
