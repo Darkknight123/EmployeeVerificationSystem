@@ -1,13 +1,19 @@
-import React from 'react';
-import Topbar from './Topbar';
+import React, { Component } from 'react';
+import Topbar from './Topbar/Topbar';
+import "./panel.css";
 
-function Panel() {
-    return (
-        <div>
-            <Topbar/>
-            
-        </div>
-    )
+ class Panel extends Component {
+    render() {
+        return (
+            <div>
+                <Topbar/>
+                <div className="container">
+                    <Sidebar/>
+                   
+                </div>
+            </div>
+        )
+    }
 }
 
-export default Panel
+export default Panel;

@@ -1,0 +1,29 @@
+.topbar {
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    color:whitesmoke;
+    top: 0;
+    left: 0;
+  }
+.topbarWrapper{
+    display:flex;
+    padding:0px 20px;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.topLeft{
+    display:flex;
+    align-items: center;
+}
+.logo{
+    font-weight: bold;
+    font-size: 30px;
+    color:whitesmoke;
+    cursor: pointer;
+}
+.topRight{
+    display:flex;
+    align-items: center;
+}
