@@ -7,6 +7,12 @@ root {
     bottom: 0;
     overflow: "hidden";
   }
+  .container{
+      height:95%;
+      width:250px;
+      background-color: darkslategray;
+      color:whitesmoke;
+  }
   sidebar{
     z-Index: 2;
     position: "absolute";
