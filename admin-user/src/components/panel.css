@@ -1,0 +1,39 @@
+.Panel{
+    width:90%;
+    height:60vh;
+    border:1px solid rgb(204, 204, 204);
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    border-radius:5px;
+}
+.btn-container{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    padding:20px;
+}
+.btn{
+    width:20%;
+    height:220px;
+    border-radius: 50%;
+    background-color: rgb(204, 204, 204);
+    display:flex;
+    flex-direction:column;
+    text-align: center;
+    justify-content:center;
+    transition: 0.3s;
+}
+
+.btn:active{
+    transform:scale(0.9);
+}
+.btn i{
+    font-size: 50px;
+    transition: 0.1s;
+    color:rgb(136, 135, 135);
+}
+.btn i:active{
+    color:rgb(179, 177, 177);
+
+}

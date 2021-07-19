@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import LoginForm from './components/LoginForm'
 import Panel from './components/Panel';
+// import Home from './components/Home'
 
 function App() {
   const adminUser={
@@ -9,7 +10,7 @@ function App() {
   }
   const [user,setUser]=useState({name:"",email:""});
   const [error,setError]=useState("");
-
+  const [whatIsRendering, setwhatIsRendering] = useState(<Panel r={setwhatIsRendering}/>);
   const Login =details=>{
     console.log(details);
 
@@ -29,13 +30,14 @@ function App() {
   
   return (
     <div className='App'>
-     {(user.email !=="")?(
-       <Panel/>
+
+      {whatIsRendering}
+     {/* {(user.email !=="")?(
      
       
      ):(
        <LoginForm Login={Login} error={error}/>
-     )}
+     )} */}
     </div>
   );
 }
