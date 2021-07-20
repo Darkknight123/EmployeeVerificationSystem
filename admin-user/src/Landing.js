@@ -7,6 +7,7 @@ import Panel from './components/Panel';
 
 
 
+
 export class Landing extends Component {
     constructor(props) {
         super(props)
