@@ -1,22 +1,19 @@
 import "./panel.css";
 import React, { Component } from 'react'
-import { Router, Link } from "@reach/router"
+import { Link } from "@reach/router"
 
 
 
 export class Panel extends Component {
-        constructor(props) {
-                super(props)
-        }
-        
+
         render() {
                 return (
                         <div className="Panel">
                                 <div className="btn-container">
-                                        <div className="btn home"><i className="fas fa-home"></i></div>
-                                        <div className="btn new-user"> <i className="fas fa-user-plus"></i></div>
-                                        <div className="btn users"> <i className="fas fa-users"></i></div>
-                                        <div className="btn logs"> <i className="fas fa-cogs"></i></div>
+                                        <Link to="/home" className="btn home"><div ><i className="fas fa-home"></i></div></Link>
+                                        <Link to="/newuser" className="btn new-user"><div > <i className="fas fa-user-plus"></i></div></Link>
+                                        <Link to="/users" className="btn users"><div > <i className="fas fa-users"></i></div></Link>
+                                        <Link to="/logs" className="btn users"><div x> <i className="fas fa-cogs"></i></div></Link>
                                 </div>
                         </div>
                 )
