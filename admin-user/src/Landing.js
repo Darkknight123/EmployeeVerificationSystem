@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from './components/Home'
+//import Home from './components/Home'
 import NewUsers from './components/NewUsers'
 import Users from './components/Users'
 import Logs from './components/Logs'
