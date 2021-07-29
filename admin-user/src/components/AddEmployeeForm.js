@@ -19,7 +19,7 @@ export default class AddEmployeeForm extends Component {
 
     prevStep = () => {
         const { step } = this.state;
-        this.setState({ step: -1 });
+        this.setState({ step: step -1 });
     }
 
     nextStep = () => {

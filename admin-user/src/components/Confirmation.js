@@ -15,23 +15,24 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
   }
 
   return (
-    <Container  component="main" maxWidth="xs">
+    <div style={{ backgroundColor: "#fff", width: "90%", height: "70vh", margin: "50px auto" }}>
+         <Container  component="main" maxWidth="xs">
       <div>
         <List>
           <ListItem>
-            <ListItemText primary="Email" secondary={FirstName}/>
+            <ListItemText primary="FirstName" secondary={FirstName}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Username" secondary={SecondName}/>
+            <ListItemText primary="SecondName" secondary={SecondName}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="First Name" secondary={Proffesion}/>
+            <ListItemText primary="Proffession" secondary={Proffesion}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Last Name" secondary={EmployeeId}/>
+            <ListItemText primary="EmployeeId" secondary={EmployeeId}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="De" secondary={Department}/>
+            <ListItemText primary="Department" secondary={Department}/>
           </ListItem>
           <ListItem>
             <ListItemText primary="email" secondary={email}/>
@@ -59,12 +60,14 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
               variant="contained"
               color="primary"
             >
-              Confirm & Continue
+              Confirm
             </Button>
           </Grid>
         </Grid>
       </div>
     </Container>
+    </div>
+ 
   )
 }
 
