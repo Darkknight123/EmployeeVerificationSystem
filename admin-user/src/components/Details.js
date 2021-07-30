@@ -34,6 +34,16 @@ const Details = ({ nextStep, handleChange, values }) => {
                                     autoComplete="SecondName"
                                     fullWidth />
                             </Grid>
+                            <br/>
+                               <Grid item xs={12}>
+                                <TextField
+                                    placeholder="Male"
+                                    label="Sex"
+                                    onChange={handleChange('Sex')}
+                                    defaultValue={values.Sex}
+                                    autoComplete="Sex"
+                                    fullWidth />
+                            </Grid>
                         </Grid>
                         <br />
                         <Button

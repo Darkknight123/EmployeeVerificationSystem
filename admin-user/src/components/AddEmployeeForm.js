@@ -11,6 +11,7 @@ export default class AddEmployeeForm extends Component {
         step: 1,
         FirstName: '',
         SecondName: '',
+        Sex:'',
         Proffesion: '',
         EmployeeId: '',
         Department: '',
@@ -32,8 +33,8 @@ export default class AddEmployeeForm extends Component {
     }
     render() {
         const { step } = this.state;
-        const { FirstName, SecondName, Proffesion, EmployeeId, Department, email }= this.state;
-        const values = { FirstName, SecondName, Proffesion, EmployeeId, Department, email }
+        const { FirstName, SecondName, Sex,Proffesion, EmployeeId, Department, email }= this.state;
+        const values = { FirstName, SecondName, Sex,Proffesion, EmployeeId, Department, email }
 
         switch (step) {
             case 1:
