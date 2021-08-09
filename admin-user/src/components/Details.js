@@ -17,6 +17,7 @@ const Details = ({ nextStep, handleChange, values }) => {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
+                                    id="firstname"
                                     placeholder="FirstName"
                                     label="FirstName"
                                     onChange={handleChange('FirstName')}
@@ -27,6 +28,7 @@ const Details = ({ nextStep, handleChange, values }) => {
                             <br />
                             <Grid item xs={12}>
                                 <TextField
+                                    id="Secondname"
                                     placeholder="SecondName"
                                     label="SecondName"
                                     onChange={handleChange('SecondName')}
@@ -34,9 +36,10 @@ const Details = ({ nextStep, handleChange, values }) => {
                                     autoComplete="SecondName"
                                     fullWidth />
                             </Grid>
-                            <br/>
-                               <Grid item xs={12}>
+                            <br />
+                            <Grid item xs={12}>
                                 <TextField
+                                    id="gender"
                                     placeholder="Male"
                                     label="Sex"
                                     onChange={handleChange('Sex')}

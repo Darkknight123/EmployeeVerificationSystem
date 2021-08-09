@@ -1,26 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Details from './Details'
 import PersonalDetails from './PersonalDetails'
 import Succes from './Succes'
 import Confirmation from './Confirmation'
 
 
+
+
+
 export default class AddEmployeeForm extends Component {
+    
 
     state = {
         step: 1,
         FirstName: '',
         SecondName: '',
-        Sex:'',
+        Sex: '',
         Proffesion: '',
         EmployeeId: '',
         Department: '',
         email: '',
+        picture: '',
     }
+
 
     prevStep = () => {
         const { step } = this.state;
-        this.setState({ step: step -1 });
+        this.setState({ step: step - 1 });
     }
 
     nextStep = () => {
@@ -33,8 +39,8 @@ export default class AddEmployeeForm extends Component {
     }
     render() {
         const { step } = this.state;
-        const { FirstName, SecondName, Sex,Proffesion, EmployeeId, Department, email }= this.state;
-        const values = { FirstName, SecondName, Sex,Proffesion, EmployeeId, Department, email }
+        const { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture} = this.state;
+        const values = { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture}
 
         switch (step) {
             case 1:
@@ -64,11 +70,9 @@ export default class AddEmployeeForm extends Component {
                     <Succes />
                 )
             default:
-                //do nothing
+            //do nothing
 
 
         }
     }
 }
-
-
