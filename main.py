@@ -1,5 +1,5 @@
 # importing all the modules
-
+import psycopg2
 from flask import Flask
 import cv2
 import numpy as np
@@ -10,10 +10,25 @@ from flask_cors import CORS
 import mysql.connector as conn
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 db = []
 known_path = os.path.join(os.getcwd(), "ImageAttendance/Known_faces/")
 unknown_path = os.path.join(os.getcwd(), "ImageAttendance/Unknown_faces/")
+
+DATABASE_USER = os.environ['Dark_Knight']
+DATABASE_PASSWORD = os.environ['Maggie']
+DATABASE_NAME = os.environ['FaceBase']
+DATABASE_HOST = os.environ['127.0.0.1']
+DATABASE_PORT = os.environ['3000']
+
+
+def DATABASE_CONNECTION():
+    return psycopg2.connect(host='127.0.0.1',
+                            database='FaceBase',
+                            UserName='Dark_knight',
+                            password='Maggie',
+                            charset='utf8',
+                            portnumber=3000)
 
 
 def get_data():

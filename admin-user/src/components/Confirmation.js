@@ -20,7 +20,7 @@ const [errorWhileAddingUser, setErrorWhileAddingUser] = useState(false);
   const addEmployeeToDb = e => {
     e.preventDefault()
     //add employee as a POST request
-    let FirstName = document.getElementById("FirstName").value
+    let FirstName = document.getElementById("firstname").value
     let SecondName = document.getElementById("secondname").value
     let sex = document.getElementById("gender").value
     let Proffesion = document.getElementById("proffesion").value
