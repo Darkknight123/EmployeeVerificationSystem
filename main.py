@@ -1,12 +1,13 @@
 # importing all the modules
 import psycopg2
+import requests_file
 from flask import Flask
 import cv2
 import numpy as np
 import os
 from flask import *
 import face_recognition
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import mysql.connector as conn
 
 app = Flask(__name__)
@@ -55,48 +56,23 @@ def get_data():
     con.close()
 
 
-@app.route('/')
-def index():
-    return render_template("index.html")
+# * --------------------  ROUTES ------------------- *
+# * ------- get data from the face recognition ------ *
+@app.route('/register', methods=['POST'])
+@cross_origin(supports_credentials=True)
+def add_employee(request_form=None):
+    try:
+        # get the picture from the request
+        image_file = requests_file['image']
+        print(request.form['EmployeeID'])
 
-
-app.route('/register', methods=['GET'])
-
-
-def register():
-    con = conn.connect(host='127.0.0.1',
-                       database='FaceBase',
-                       userName='Dark_knight',
-                       password='Maggie',
-                       charset='utf8',
-                       portnumber=3000)
-    cursor = con.cursor()
-    sql = 'insert into EMPLOYEE values (%s,%s)'
-    name = request.args.get("name")
-    video_capture = cv2.VideoCapture(0)
-    ret, frame = video_capture.read()
-    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-    rgb_small_frame = small_frame[:, :, ::-1]
-    face_locations = face_recognition.face_locations(rgb_small_frame)
-    face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
-    dir = os.path.join(known_path, name)
-    if not os.path.isdir(dir):
-        os.mkdir(dir)
-    os.chdir(dir)
-    rand_no = np.random.random_sample()
-    cv2.imwrite(str(rand_no) + ".jpg", frame)
-    video_capture.release()
-    cv2.destroyAllWindows()
-    encoding = ""
-    for i in face_encodings:
-        encoding += str(i) + ","
-        li = [name, encoding]
-        value = tuple(li)
-        cursor.execute(sql, value)
-        con.commit()
-        cursor.close()
-        con.close()
-        return "Done"
+        # storing the image in the folder of known faces
+        file_path = os.path.join(f"ImageAttendance/Known_faces/-{request_form['EmployeeID']}.jpg")
+        image_file.save(file_path)
+        answer = 'new employee successfully added'
+    except:
+        answer = 'Error while adding new employee. Please try later....'
+    return jsonify(answer)
 
 
 @app.route("/Login")
