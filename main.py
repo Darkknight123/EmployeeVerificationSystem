@@ -79,7 +79,7 @@ def add_employee(request_form=None):
 def login():
     get_data()
     global db
-    if db == []:
+    if not db:
         msg = "ACCESS DENIED \n YOU DO NOT HAVE THE PRIVILEGES TO ACCESS THIS ROOM"
     else:
         known_face_encodings = [i[1] for i in db]
