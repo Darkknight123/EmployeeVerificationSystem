@@ -3,6 +3,7 @@ import Details from './Details'
 import PersonalDetails from './PersonalDetails'
 import Succes from './Succes'
 import Confirmation from './Confirmation'
+import axios from 'axios';
 
 
 
@@ -50,7 +51,7 @@ export default class AddEmployeeForm extends Component {
         email:this.state.email,
         picture:this.state.picture
     };
-    axios.post('http://localhost:5000/register',newUser)
+    axios.post('http://127.0.0.1:5000/register',newUser)
          .then(response=>{
              this.setState({})
          })
