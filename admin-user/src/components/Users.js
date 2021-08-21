@@ -16,7 +16,7 @@ export class Users extends Component {
             <div style={{ backgroundColor: "white", width: "90%", height: "60vh", margin: "10px auto" }}>
                 <table>
                     <tr>
-                        <th>First Name</th>
+                        <th>FirstName</th>
                         <th>Employee ID</th>
                         <th>Department</th>
                         <th>Proffesion</th>
