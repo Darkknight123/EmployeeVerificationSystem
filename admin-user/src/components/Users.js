@@ -6,7 +6,11 @@ export class Users extends Component {
 
         this.state = {
             data: [
-                { FirstName: "Kerry", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" }
+                { FirstName: "Kerry", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" },
+                 { FirstName: "Peter", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" },
+                  { FirstName: "Maggie", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" },
+                   { FirstName: "Duncan", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" },
+                    { FirstName: "Washington", Proffesion: "Senior Mobile developer", EmployeeId: "4657676", Department: "Informatics" }
             ]
         }
     }
