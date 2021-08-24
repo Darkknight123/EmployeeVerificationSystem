@@ -1,6 +1,10 @@
 # importing all the modules
+from typing import re
+
+import MySQLdb
 import psycopg2
 import requests_file
+from alembic.ddl import mysql
 from flask import Flask
 import cv2
 import numpy as np
@@ -58,9 +62,39 @@ def get_data():
 
 # * --------------------  ROUTES ------------------- *
 # * ------- get data from the face recognition ------ *
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET', 'POST'])
 @cross_origin(supports_credentials=True)
-def add_employee(request_form=None):
+def add_employee():
+    msg = ''
+    assert isinstance(request.form, object)
+    if request.method == 'POST' and 'FirstName' in request.form:
+        FirstName = request.form['FirstName']
+        SecondName = request.form['SecondName']
+        Sex = request.form['Sex']
+        Proffesion = request.form['Proffesion']
+        EmployeeID = request.form['Employee ID']
+        Department = request.form['Department']
+        Email = request.form['email']
+        Picture = request.form['image']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM Employee where FirstName =  % s',
+                       (FirstName, SecondName, Sex, Proffesion, EmployeeID, Email, Department, Picture))
+        Employee = cursor.fetchone()
+        if Employee:
+            msg = 'Employee Already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', Email):
+            msg = 'Invalid email address !'
+        elif not FirstName or not SecondName or not Sex or not Proffesion or not EmployeeID or not Department or not Email or not Picture:
+            msg = 'Please Fill out the form !'
+        else:
+            cursor.execute('INSERT INTO Employees VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s)',
+                           (FirstName, SecondName, Sex, Proffesion, Department, EmployeeID, Email, Picture))
+            mysql.connection.commit()
+            msg = 'The employee has been successfully added to the system !!!'
+    elif request.method == 'POST':
+        msg = 'please fill out the form !'
+    return msg
+
     try:
         # get the picture from the request
         image_file = requests_file['image']
@@ -94,7 +128,7 @@ def login():
         face_locations = face_recognition.face_locations(rgb_small_frame)
         face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
         face_names = []
-        if face_encodings == []:
+        if not face_encodings:
             msg = "ACCESS DENIED \n YOU DO NOT HAVE THE PRIVILEGES TO ACCESS THIS ROOM"
         else:
             for face_encoding in face_encodings:
@@ -104,7 +138,7 @@ def login():
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
-                if name == "Unkown":
+                if name == "Unknown":
                     msg = "ACCESS DENIED \n YOU DO NOT HAVE THE PRIVILEGES TO ACCESS THIS ROOM"
                 else:
                     msg = name

@@ -17,7 +17,8 @@ sql ='''CREATE TABLE EMPLOYEE(
    DEPARTMENT CHAR(20),
    PROFFESION CHAR(25),
    EMAIL INT,
-   SEX CHAR(1)
+   SEX CHAR(1),
+   PICTURE BLOB
 )'''
 cursor.execute(sql)
 print("Table created successfully........")
