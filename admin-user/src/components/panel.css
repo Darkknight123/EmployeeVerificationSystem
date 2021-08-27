@@ -1,12 +1,14 @@
 .Panel{
     width:90%;
     height:60vh;
+    background-color: #174952;
     border:1px solid rgb(204, 204, 204);
     display:flex;
     flex-direction: column;
     justify-content:center;
     border-radius:5px;
     margin:20px auto;
+    box-shadow: 5px 10px #888888;
 }
 .btn-container{
     display:flex;
@@ -18,7 +20,7 @@
     width:20%;
     height:220px;
     border-radius: 50%;
-    background-color: rgb(204, 204, 204);
+    background-color: whitesmoke;
     display:flex;
     flex-direction:column;
     text-align: center;
@@ -32,9 +34,9 @@
 .btn i{
     font-size: 50px;
     transition: 0.1s;
-    color:rgb(136, 135, 135);
+    color:#3f51b6;
 }
 .btn i:active{
-    color:rgb(179, 177, 177);
+    color:rgb(85, 83, 83);
 
 }

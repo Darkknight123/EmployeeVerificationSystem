@@ -1,0 +1,12 @@
+.Title {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    padding:0;
+    background-color: rgb(7, 7, 7);
+    color: #fff;
+    font-family: fantasy;
+    font-style: oblique;
+    font-variant: 500;
+  }

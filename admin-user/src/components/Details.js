@@ -7,7 +7,7 @@ const Details = ({ nextStep, handleChange, values }) => {
         nextStep();
     }
     return (
-        <div style={{ backgroundColor: "#fff", width: "90%", height: "70vh", margin: "50px auto" }}>
+        <div style={{ backgroundColor: "#fff", width: "90%", height: "67vh", margin: "50px auto" }}>
             <Container component="main" maxWidth="xs">
                 <div>
                     <Typography component="h1" variant="h5">

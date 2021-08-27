@@ -17,7 +17,7 @@ export class Users extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: "white", width: "90%", height: "70vh", margin: "50px auto" }}>
+            <div style={{ backgroundColor: "white", width: "90%", height: "60vh", margin: "50px auto" }}>
                 <table style={{  borderSpacing: "5px",background: "#fff",boxShadow: "0 1px 0 0 rgba(0, 0, 37, 0.05)",width: "100%"}}>
                 <tr>
                     <th>FirstName</th>
