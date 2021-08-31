@@ -18,24 +18,23 @@ export default class Landing extends React.Component {
 
     render() {
         return (
-            <div style={{ width: "100%" }}>
-                <Topbar/>
-                <div className="Landing">
-                    <div className="container">
-                        <Link to="/"><i className="fas fa-home" style={{color:'#3f51b6'}}> Home</i></Link>
-                        <Link to="/addemployeeform"> <i className="fas fa-user-plus" style={{color:'#3f51b6'}}> New User</i></Link>
-                        <Link to="/users"> <i className="fas fa-users" style={{color:'#3f51b6'}}> Users</i></Link>
-                        <Link to="/logs"><i className="fas fa-cogs" style={{color:'#3f51b6'}}> Logs</i></Link>
-                    </div>
+            <div className="Landing" style={{ backgroundColor: "#fff", width: "90%", height: "60vh", margin: "50px auto" }}>
+                <Topbar />
+                <div className="container">
+                    <Link to="/"><i className="fas fa-home" style={{ color: '#fff' }}> Home</i></Link>
+                    <Link to="/addemployeeform"> <i className="fas fa-user-plus" style={{ color: '#fff' }}> New User</i></Link>
+                    <Link to="/users"> <i className="fas fa-users" style={{ color: '#fff' }}> Users</i></Link>
+                    <Link to="/logs"><i className="fas fa-cogs" style={{ color: '#fff' }}> Logs</i></Link>
                 </div>
-                
-                    <Router>
-                        <Panel path="/" />
-                        <AddEmployeeForm path="/addemployeeform" />
-                        <Users path="/users" />
-                        <Logs path="/logs" />
-                    </Router>
-                
+
+
+                <Router>
+                    <Panel path="/" />
+                    <AddEmployeeForm path="/addemployeeform" />
+                    <Users path="/users" />
+                    <Logs path="/logs" />
+                </Router>
+
             </div>
         );
     }

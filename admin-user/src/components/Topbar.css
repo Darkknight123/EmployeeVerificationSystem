@@ -1,12 +1,14 @@
 .Title {
     width: 100%;
-    margin: 0;
+    margin:0px auto;
     display: flex;
+    border:1px solid rgb(204, 204, 204);
     justify-content: space-between;
-    padding:0;
-    background-color: rgb(7, 7, 7);
-    color: #fff;
+    padding:20px;
+    /* background-color: rgb(7, 7, 7); */
+    color: #174952;
     font-family: fantasy;
     font-style: oblique;
     font-variant: 500;
+    box-shadow: 0px 0px 4px  #888888;
   }

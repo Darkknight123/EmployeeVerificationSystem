@@ -14,6 +14,8 @@ import face_recognition
 from flask_cors import CORS, cross_origin
 import mysql.connector as conn
 
+FILE_PATH = os.path.dirname(os.path.realpath(__file__))
+
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 db = []
@@ -44,27 +46,145 @@ def get_data():
                        password='Maggie',
                        charset='utf8',
                        portnumber=3000)
-    cursor = con.cursor()
-    sql = 'select * from EMPLOYEE'
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    for i in result:
-        l = [i[0]]
-        string = i[1][1:-2]
-        nums = []
-        for x in string.split():
-            nums.append(float(x.strip()))
-        l.append(nums)
-        db.append(1)
-    cursor.close()
-    con.close()
 
 
 # * --------------------  ROUTES ------------------- *
 # * ------- get data from the face recognition ------ *
+@app.route('/receive_data', methods=['POST'])
+def get_receive_data():
+    if request.method == 'POST':
+        json_data = request.get_json()
+        try:
+            connection = DATABASE_CONNECTION()
+            cursor = connection.cursor()
+
+            user_log = \
+                f"SELECT * FROM users WHERE date = '{json_data['date']}' AND FirstName = '{json_data['FirstName']}'"
+            cursor.execute(user_log)
+            result = cursor.fetchall()
+            connection.commit()
+
+            # if user already in the db
+
+            if result:
+                print('user IN')
+                image_path = f"{FILE_PATH}ImageAttendance/-{json_data['date']}/{json_data['FirstName']}/departure.jpg"
+                # save image
+                os.makedirs(f"{FILE_PATH}/ImageAttendance/-{json_data['FirstName']}", exist_ok=True)
+                cv2.imwrite(image_path, np.array(json_data['picture_array']))
+                json_data['picture_path'] = image_path
+                # update user in the db
+                update_user = f"UPDATE employees SET departure_time='{json_data['picture_path']}' WHERE FirstName = '{json_data['name']}' AND date = '{json_data['date']}'"
+                cursor.execute(update_user)
+            else:
+                print("user out")
+
+                # save image
+                image_path = f"{FILE_PATH}/ImageAttendance/history/-{json_data['date']}/{json_data['FirstName']}/arrival.jpg"
+                os.makedirs(f"{FILE_PATH}/ImageAttendance/history/-{json_data['date']}/{json_data['FirstName']}",
+                            exist_ok=True)
+                cv2.imwrite(image_path, np.array(json_data['picture_array']))
+                json_data['picture_path'] = image_path
+
+                # create a new row for the user today
+                insert_Employee = f"INSERT INTO users (FirstName,date,arrival_time,arrival_picture) VALUES ('{json_data['FirstName']}','{json_data['date']}','{json_data['hour']}',{json_data['picture_path']}')"
+                cursor.execute(insert_Employee)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print("ERROR DB:", error)
+        finally:
+            connection.commit()
+
+            # closing database connection.
+            if connection:
+                cursor.close()
+                connection.close()
+                print("connection closed")
+        # return user's data to the front
+        return jsonify(json_data)
+
+
+# *------- Get all the data of an employee ------*
+@app.route('/get_employee/<string:name>', methods=['GET'])
+def get_employee(FirstName):
+    answer_to_send = {}
+    # check if user is already in the db
+    try:
+        # Connect to DB
+        connection = DATABASE_CONNECTION()
+        cursor = connection.cursor()
+        # query the db
+        Employee_info_query = f"SELECT * FROM users WHERE FirstName='{FirstName}'"
+
+        cursor.execute(Employee_info_query)
+        result = cursor.fetchall()
+        connection.commit()
+
+        # if the user exist in the db
+        if result:
+            print('RESULT:', result)
+            # Structure the data and put the dates in the string for the front
+
+            for k, v in enumerate(result):
+                answer_to_send[k] = {}
+                for ko, vo in enumerate(result[k]):
+                    answer_to_send[k][ko] = str(vo)
+            print('answer_to_send: ', answer_to_send)
+        else:
+            answer_to_send = {'error:''User not found...'}
+    except(Exception, psycopg2.DatabaseError) as error:
+        print("ERROR DB: ", error)
+    finally:
+        # closing database connection
+        if connection:
+            cursor.close()
+            connection.close()
+    return jsonify(answer_to_send)
+
+
+# * --------- Get the 5 last users seen by the camera --------- *
+@app.route('/get_5_last_entries', methods=['GET'])
+def get_5_last_entries():
+    answer_to_send = {}
+    # Check if the user is already in the DB
+    try:
+        # Connect to DB
+        connection = DATABASE_CONNECTION()
+
+        cursor = connection.cursor()
+        # Query the DB to get all the data of a user:
+        lasts_entries_sql_query = f"SELECT * FROM employees ORDER BY id DESC LIMIT 5;"
+
+        cursor.execute(lasts_entries_sql_query)
+        result = cursor.fetchall()
+        connection.commit()
+
+        # if DB is not empty:
+        if result:
+            # Structure the data and put the dates in string for the front
+            for k, v in enumerate(result):
+                answer_to_send[k] = {}
+                for ko, vo in enumerate(result[k]):
+                    answer_to_send[k][ko] = str(vo)
+        else:
+            answer_to_send = {'error': 'error detect'}
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("ERROR DB: ", error)
+    finally:
+        # closing database connection:
+        if connection:
+            cursor.close()
+            connection.close()
+
+    # Return the user's data to the front
+    return jsonify(answer_to_send)
+
+
 @app.route('/register', methods=['GET', 'POST'])
 @cross_origin(supports_credentials=True)
 def add_employee():
+    print(request.form)
+
     msg = ''
     assert isinstance(request.form, object)
     if request.method == 'POST' and 'FirstName' in request.form:

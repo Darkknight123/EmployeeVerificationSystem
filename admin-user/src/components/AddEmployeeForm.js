@@ -10,19 +10,25 @@ import axios from 'axios';
 
 
 export default class AddEmployeeForm extends Component {
-    
+    constructor(props) {
+        super(props)
 
-    state = {
-        step: 1,
-        FirstName: '',
-        SecondName: '',
-        Sex: '',
-        Proffesion: '',
-        EmployeeId: '',
-        Department: '',
-        email: '',
-        picture: '',
+        this.state = {
+            step: 1,
+            FirstName: '',
+            SecondName: '',
+            Sex: '',
+            Proffesion: '',
+            EmployeeId: '',
+            Department: '',
+            email: '',
+            picture: '',
+        }
+        this.handleSubmit= this.handleSubmit.bind(this)
+
     }
+
+
 
 
     prevStep = () => {
@@ -39,28 +45,29 @@ export default class AddEmployeeForm extends Component {
         this.setState({ [input]: e.target.value });
     }
     handleSubmit(e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    const newUser = {
-        FirstName: this.state.FirstName,
-        SecondName: this.state.SecondName,
-        Sex: this.state.Sex,
-        Proffesion: this.state.Proffesion,
-        EmployeeId: this.state.EmployeeId,
-        Department: this.state.Department,
-        email:this.state.email,
-        picture:this.state.picture
-    };
-    axios.post('http://127.0.0.1:5000/register',newUser)
-         .then(response=>{
-             this.setState({})
-         })
-         .catch (error => error);   
+        let newUser = {
+            FirstName: this.state.FirstName,
+            SecondName: this.state.SecondName,
+            Sex: this.state.Sex,
+            Proffesion: this.state.Proffesion,
+            EmployeeId: this.state.EmployeeId,
+            Department: this.state.Department,
+            email: this.state.email,
+            picture: this.state.picture
+        };
+        axios.post('http://127.0.0.1:5000/register', newUser)
+            .then(response => {
+                //  this.setState({})
+                alert(response.data)
+            })
+            .catch(error => error);
     }
     render() {
         const { step } = this.state;
-        const { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture} = this.state;
-        const values = { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture}
+        const { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture } = this.state;
+        const values = { FirstName, SecondName, Sex, Proffesion, EmployeeId, Department, email, picture }
 
         switch (step) {
             case 1:
@@ -81,6 +88,7 @@ export default class AddEmployeeForm extends Component {
             case 3:
                 return (
                     <Confirmation
+                        action={this.handleSubmit}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         values={values} />

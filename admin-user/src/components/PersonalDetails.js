@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Typography, Grid, TextField, Button, Input } from '@material-ui/core'
 
+
 const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
 
   const Continue = e => {
@@ -14,7 +15,7 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
   }
 
   return (
-    <div style={{ backgroundColor: "#fff", width: "90%", height: "70vh", margin: "50px auto" }}>
+    <div style={{ backgroundColor: "#fff",  width: "90%", height: "60vh", margin: "50px auto" }}>
       <Container component="main" maxWidth="xs">
         <div>
           <Typography component="h1" variant="h5">
@@ -83,7 +84,7 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  color="#174952"
                 >
                   Previous
               </Button>
@@ -94,7 +95,7 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  color="#174952"
                 >
                   Next
               </Button>

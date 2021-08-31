@@ -10,7 +10,7 @@ cursor = conn.cursor()
 cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
 
 #Creating table as per requirement
-sql ='''CREATE TABLE EMPLOYEE(
+sql ='''CREATE TABLE employees(
    EMPLOYEE_ID INT PRIMARY KEY,
    FIRST_NAME CHAR(20) NOT NULL,
    SECOND_NAME CHAR(20),
@@ -18,7 +18,9 @@ sql ='''CREATE TABLE EMPLOYEE(
    PROFFESION CHAR(25),
    EMAIL INT,
    SEX CHAR(1),
-   PICTURE BLOB
+   PICTURE BLOB,
+   TIME DATETIME (30),
+   DATE DATETIME(40)
 )'''
 cursor.execute(sql)
 print("Table created successfully........")

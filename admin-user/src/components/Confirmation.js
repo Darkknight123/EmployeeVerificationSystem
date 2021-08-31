@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Grid, List, ListItem, ListItemText, Button } from '@material-ui/core'
 
-const Confirmation = ({ prevStep, nextStep, values }) => {
+const Confirmation = ({ prevStep, nextStep, values,action }) => {
   console.log(values);
   const { FirstName, SecondName, Sex,Proffesion, EmployeeId, Department, email, picture} = values
   const Continue = e => {
@@ -17,7 +17,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
 const [isUserWellAdded, setIsUserWellAdded] = useState(false);
 const [errorWhileAddingUser, setErrorWhileAddingUser] = useState(false); 
   return (
-    <div style={{ backgroundColor: "#fff", width: "90%", height: "70vh", margin: "50px auto" }}>
+    <div style={{ backgroundColor: "#fff",  width: "90%", height: "60vh", margin: "50px auto" }}>
          <Container  component="main" maxWidth="xs">
       <div>
         <List>
@@ -61,8 +61,8 @@ const [errorWhileAddingUser, setErrorWhileAddingUser] = useState(false);
             </Button>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Button 
-              type="submit"
+            <Button
+              onClick={action}
               fullWidth
               variant="contained"
               color="primary"
