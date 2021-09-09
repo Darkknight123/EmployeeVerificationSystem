@@ -54,7 +54,7 @@ const Details = ({ nextStep, handleChange, values }) => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary">
+                            color="rgb(85, 83, 83)">
                             Next
                         </Button>
                     </form>

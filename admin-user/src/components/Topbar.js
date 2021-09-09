@@ -5,7 +5,7 @@ function Topbar() {
   return (
     <div className="Title">
         <Top-right><h1>ADMIN PANEL</h1></Top-right>
-        <Top-left><h1>Welcome Kerry Philip</h1></Top-left>
+        <Top-left><h1>Welcome [this.name]</h1></Top-left>
       
     </div>
   )

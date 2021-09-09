@@ -33,7 +33,7 @@
 .btn i{
     font-size: 50px;
     transition: 0.1s;
-    color:#3f51b6;
+    color:rgb(85, 83, 83);
 }
 .btn i:active{
     color:rgb(85, 83, 83);

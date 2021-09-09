@@ -55,7 +55,7 @@ const [errorWhileAddingUser, setErrorWhileAddingUser] = useState(false);
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              color="rgb(85, 83, 83)"
             >
               Previous
             </Button>
@@ -65,7 +65,7 @@ const [errorWhileAddingUser, setErrorWhileAddingUser] = useState(false);
               onClick={action}
               fullWidth
               variant="contained"
-              color="primary"
+              color="rgb(85, 83, 83)"
             >
               Confirm
             </Button>
