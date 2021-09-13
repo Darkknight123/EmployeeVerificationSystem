@@ -28,13 +28,12 @@ function App() {
 
   return (
     <div className='App'>
-      <Landing/>
 
-      {/*{(user.email !== "") ? (
+      {(user.email !== "") ? (
         <Landing/>
       ): (
           <LoginForm Login = { Login } error = { error }/>
-     )}*/}
+     )}
     </div>
   );
 }
